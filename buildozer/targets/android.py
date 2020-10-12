@@ -240,15 +240,15 @@ class TargetAndroid(Target):
             except:
                 traceback.print_exc()
             self.adb_cmd = join(self.android_sdk_dir, 'platform-tools',
-                                'adb.exe')
+                                'adb.exe -H host.docker.internal')
             self.javac_cmd = self._locate_java('javac.exe')
             self.keytool_cmd = self._locate_java('keytool.exe')
         elif platform in ('darwin', ):
-            self.adb_cmd = join(self.android_sdk_dir, 'platform-tools', 'adb')
+            self.adb_cmd = join(self.android_sdk_dir, 'platform-tools', 'adb -H host.docker.internal')
             self.javac_cmd = self._locate_java('javac')
             self.keytool_cmd = self._locate_java('keytool')
         else:
-            self.adb_cmd = join(self.android_sdk_dir, 'platform-tools', 'adb')
+            self.adb_cmd = join(self.android_sdk_dir, 'platform-tools', 'adb -H host.docker.internal')
             self.javac_cmd = self._locate_java('javac')
             self.keytool_cmd = self._locate_java('keytool')
 
